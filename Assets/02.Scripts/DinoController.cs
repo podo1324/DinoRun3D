@@ -5,6 +5,7 @@ using UnityEngine;
 public class DinoController : MonoBehaviour
 {
     public float moveSpeedZ; // z축 움직이는 속도 변수
+    public float moveSpeedX;
 
     void Start()
     {
@@ -17,11 +18,11 @@ public class DinoController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-0.02f, 0, 0);
+            transform.Translate(-moveSpeedX * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(0.02f, 0, 0);
+            transform.Translate(moveSpeedX * Time.deltaTime, 0, 0);
         }
 
     }
