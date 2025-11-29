@@ -6,11 +6,15 @@ using TMPro;
 public class DinoCounter : MonoBehaviour
 {
     public TextMeshPro dinoCountText;
-    public Transform raptors;
-    
+    public Transform raptors;      // Raptor들을 관리할 부모 오브젝트
+
+    void Start()
+    {
+        
+    }
+
     void Update()
     {
         dinoCountText.text = raptors.childCount.ToString();
     }
-
 }

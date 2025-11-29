@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class DinoPositionController : MonoBehaviour
 {
-    public Transform raptors;
+    public Transform raptors;      // Raptor들을 관리할 부모 오브젝트
 
-    public float radius = 1f;
-    public float ratio = 0.1f;
+    public float radius = 1f;      // 원의 반지름
+    public float ratio = 0.1f;      // 배치 간격 비율 (클수록 촘촘)
+
     void Update()
     {
         SetDinoPosition();
     }
+
     private void SetDinoPosition()
     {
         for (int i = 0; i < raptors.childCount; i++)
         {
-            if (i > 8) // Raptor오브젝트가 10개째부터는 화면에 보여지지 않게 함 (i는 0부터 시작되므로 9가 10번째이다.)
+            if(i > 8) // Raptor오브젝트가 10개째부터는 화면에 보여지지 않게 함 (i는 0부터 시작되므로 9가 10번째이다.)
             {
                 // 보이지 않게 만들어주는 코드
                 raptors.GetChild(i).gameObject.SetActive(false);  // 10번째 오브젝트부터는 화면에 보이지 않게 함
@@ -26,7 +27,7 @@ public class DinoPositionController : MonoBehaviour
             else  // Raptor의 개수가 9개 이하일 때는 각도 계산해서 배치해줌
             {
                 // 보이게 하면서 배치를 계산하는 코드
-                if (raptors.childCount < 10)
+                if(raptors.childCount < 10)
                 {
                     // 360도 각도 계산을 위한 각도 증가값
                     float angleStep = 360f / (raptors.childCount * ratio);
@@ -49,3 +50,4 @@ public class DinoPositionController : MonoBehaviour
         }
     }
 }
+
