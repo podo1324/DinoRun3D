@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DinoController : MonoBehaviour
 {
@@ -24,5 +25,6 @@ public class DinoController : MonoBehaviour
         {
             transform.Translate(moveSpeedX * Time.deltaTime, 0, 0);
         }
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.9f, 3.9f), transform.position.y, transform.position.z);
     }
 }
