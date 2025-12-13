@@ -4,24 +4,57 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    // 싱글톤 인스턴스
+    public static MapManager Instance { get; private set; }
+
     public GameObject[] mapPrefabs;
+    public GameObject goalObject;
+
+    private void Awake()
+    {
+        // 싱글톤 초기화
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환에도 유지
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); // 중복 제거
+        }
+    }
 
     void Start()
     {
-        // 초기 생성위치는 항상 0,0,0이다
+        CreatMap();
+        goalObject = GameObject.FindWithTag("Goal");
+    }
+
+    private void CreatMap()
+    {
         Vector3 mapPosition = Vector3.zero;
 
-        for (int i = 0; i < 5;i++)  // 일단 5번만 돌아봅시다.
+        for (int i = 0; i < 5; i++)
         {
-            // 만들 맵을 랜덤으로 선택한다.
-            GameObject selectedMap = mapPrefabs[Random.Range(0,mapPrefabs.Length)];  // 0,1,2 인덱스중에 뽑힘
-            if(i > 0)
+            GameObject selectedMap;
+
+            if (i > 0)
             {
-                // 2번째 Map에서부터 이전 Map의 크기의 반을 더해준다.
+                selectedMap = mapPrefabs[Random.Range(1, mapPrefabs.Length)];
                 mapPosition.z += selectedMap.GetComponent<Map>().GetMapSize() / 2;
             }
-            GameObject nowMap = Instantiate(selectedMap, mapPosition , Quaternion.identity); // 현재 만들 맵 생성
-            mapPosition.z += nowMap.GetComponent<Map>().GetMapSize() / 2;  // 현재 생성된 Map의 길이의 반을 더한다,
+            else
+            {
+                selectedMap = mapPrefabs[0];
+            }
+
+            GameObject nowMap = Instantiate(selectedMap, mapPosition, Quaternion.identity);
+            mapPosition.z += nowMap.GetComponent<Map>().GetMapSize() / 2;
         }
+    }
+
+    public float GetGoalDistance()
+    {
+        return gameObject.transform.position.z;
     }
 }
