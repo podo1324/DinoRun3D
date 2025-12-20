@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DinoController : MonoBehaviour
 {
-    public static DinoController Instance { get; private set; }
-
-    public float moveSpeedZ;
-    public float moveSpeedX;
+    public static DinoController instance;
+    public float zMoveSpeed;
+    public float xMoveSpeed;
+    // 구체의 중심이 될 위치
     public Vector3 sphereCenter;
+    // 구체의 반지름
     public float sphereRadius = 0.5f;
     public DinoPositionController dinoPositionController;
-
     private void Awake()
     {
-        if (Instance == null)
+        if (instance != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
-        else if (Instance != this)
+        else
         {
-            Destroy(gameObject);
+            instance = this;
         }
     }
 
@@ -36,15 +36,15 @@ public class DinoController : MonoBehaviour
 
     private void DinoMove()
     {
-        transform.position += Vector3.forward * Time.deltaTime * moveSpeedZ;
+        transform.position += Vector3.forward * Time.deltaTime * zMoveSpeed;
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(moveSpeedX * Time.deltaTime, 0, 0);
+            transform.Translate(xMoveSpeed * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-moveSpeedX * Time.deltaTime, 0, 0);
+            transform.Translate(-xMoveSpeed * Time.deltaTime, 0, 0);
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.9f, 3.9f), transform.position.y, transform.position.z);
@@ -58,8 +58,9 @@ public class DinoController : MonoBehaviour
         {
             if (doors.CompareTag("Goal"))
             {
-                Debug.Log("골인!");
+                PlayerPrefs.SetInt("Stage", PlayerPrefs.GetInt("Stage") + 1);
                 doors.gameObject.GetComponent<BoxCollider>().enabled = false;
+                SceneManager.LoadScene(0);
             }
             else
             {
