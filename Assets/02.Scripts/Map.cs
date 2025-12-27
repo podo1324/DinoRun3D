@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public Vector3 mapsize;
+    public Vector3 mapSize;
 
     public float GetMapSize()
     {
-        return mapsize.z;
+        return mapSize.z;
     }
 }
