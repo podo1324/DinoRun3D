@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;  // Text 사용하기 위하여
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject titlePanel;  //  처음부터 활성
     public GameObject gamePanel;  // 처음엔 비활성
+    public GameObject gameOverPanel;
 
     public Slider progressBar;
 
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
         progressBar.value = 0f;   // 처음엔 간 거리를 0으로 세팅
         titlePanel.SetActive(true);  // 처음엔 Title화면만 보임
         gamePanel.SetActive(false);  // Game화면은 비활성화
+        gameOverPanel.SetActive(false);
         nowStageText.text = MapManager.instance.GetStage().ToString();
         nextStageText.text = (MapManager.instance.GetStage() + 1 ).ToString();
     }
@@ -64,5 +67,17 @@ public class GameManager : MonoBehaviour
         gamePanel.SetActive(true);  // 게임 시작하면 GamePanel활성화
     }
 
-    
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void GameOver() // GameOver시 실행될 함수
+    {
+        isGameStart = false;
+        Time.timeScale = 0f;  // 게임 전체 시간을 멈춤
+        gamePanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+    }
+
 }

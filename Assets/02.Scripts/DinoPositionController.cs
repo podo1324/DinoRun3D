@@ -15,7 +15,14 @@ public class DinoPositionController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.isGameStart.Equals(false))
+            return;
         SetDinoPosition();
+
+        if (raptors.childCount < 0)
+        {
+            GameManager.instance.GameOver();
+        }
     }
 
     public void SetDoorCalc(DoorType doorType, int doorNumber)
