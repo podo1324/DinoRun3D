@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        Debug.Log("게임 시작 버튼 누름");
         isGameStart = true;         // 게임 시작 변수
         Time.timeScale = 1f;        //  게임 전체 시간을 1로 세팅해서 원래대로 흐르게 함
         titlePanel.SetActive(false);  // 게임 시작하면 Titme화면은 비활성화

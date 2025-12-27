@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour
     {
         CreatStage();
         goalObject = GameObject.FindWithTag("Goal"); // Goal 오브젝트를 찾아서 대입해준다.
-    }   
+    }
 
    
 

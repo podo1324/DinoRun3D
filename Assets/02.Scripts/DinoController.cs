@@ -68,15 +68,15 @@ public class DinoController : MonoBehaviour
         // 감지된 Collider들 처리
         foreach (Collider doors in hitColliders)
         {
-            if (doors.CompareTag("Goal"))
+            if(doors.CompareTag("Goal"))
             {
                 // Goal인 지점에 닿았을 떄
-                PlayerPrefs.SetInt("Stage", PlayerPrefs.GetInt("Stage") + 1);  // 현재 stage에서 1 더하고 저장( 다음 스테이지의 숫자 갱신
+                PlayerPrefs.SetInt("Stage",PlayerPrefs.GetInt("Stage") + 1);  // 현재 stage에서 1 더하고 저장( 다음 스테이지의 숫자 갱신
                 // 충돌한 오브젝트의 BoxCollider컴포넌트를 비활성화 해줌.
                 doors.gameObject.GetComponent<BoxCollider>().enabled = false;
                 SceneManager.LoadScene(0);  // 0번씬(현재씬)을 로드해서 갱신
             }
-            else if (doors.gameObject.GetComponent<SelectDoors>() != null)
+            else
             {
                 // 여기에서 충돌한 Door의 타입과 문에 써진 숫자를 받아와서
                 int doorNumber = doors.gameObject.GetComponent<SelectDoors>().GetDoorNumber(transform.position.x);

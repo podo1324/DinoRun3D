@@ -20,5 +20,5 @@ public class Raptor : MonoBehaviour
     {
         return isTarget;
     }
-    
+
 }

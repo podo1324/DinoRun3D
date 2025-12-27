@@ -51,18 +51,8 @@ public class Enemy : MonoBehaviour
         {
             // 검색된 곳에 Dino가 있다면
 
-            if (colls.gameObject.GetComponent<Raptor>() != null)
-            {
-                if (colls.gameObject.GetComponent<Raptor>().IsTarget())
-                        continue;
 
-                colls.gameObject.GetComponent<Raptor>().SetTarget();
-
-                targetRaptor = colls.gameObject.transform;
-
-                StartGotoDino();
-
-            }
+            StartGotoDino();  // Dino에게 가는 상태로 바꿔주는 함수 실행
         }
     }
 
