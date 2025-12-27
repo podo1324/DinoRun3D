@@ -76,7 +76,7 @@ public class DinoController : MonoBehaviour
                 doors.gameObject.GetComponent<BoxCollider>().enabled = false;
                 SceneManager.LoadScene(0);  // 0번씬(현재씬)을 로드해서 갱신
             }
-            else
+            else if (doors.gameObject.GetComponent<SelectDoors>() != null)
             {
                 // 여기에서 충돌한 Door의 타입과 문에 써진 숫자를 받아와서
                 int doorNumber = doors.gameObject.GetComponent<SelectDoors>().GetDoorNumber(transform.position.x);

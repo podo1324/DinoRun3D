@@ -49,10 +49,18 @@ public class Enemy : MonoBehaviour
         // 감지된 Collider들 처리
         foreach (Collider colls in hitColliders)
         {
-            // 검색된 곳에 Dino가 있다면
+            // 검색된 곳에  Dino가 있다면
+            if (colls.gameObject.GetComponent<Raptor>() != null)
+            {
+                if (colls.gameObject.GetComponent<Raptor>().IsTarget()) // 이미 타겟으로 지정되어 있다면, 다음 충돌 오브젝트로
+                    continue;
 
+                colls.gameObject.GetComponent<Raptor>().SetTarget();  // 충돌 오브젝트에 타겟으로 지정됐다고 스위치 켜주고
 
-            StartGotoDino();  // Dino에게 가는 상태로 바꿔주는 함수 실행
+                targetRaptor = colls.gameObject.transform;   // 충돌 오브젝트를 targetRaptor로 지정해줌
+
+                StartGotoDino();  // 상태 바꿔주는 함수 실행
+            }
         }
     }
 

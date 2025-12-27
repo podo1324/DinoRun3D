@@ -2115,6 +2115,7 @@ GameObject:
   - component: {fileID: 3479873223979734114}
   - component: {fileID: 2459967786171996010}
   - component: {fileID: 2976269698981440903}
+  - component: {fileID: -1688391008102056164}
   m_Layer: 0
   m_Name: Raptor
   m_TagString: Untagged
@@ -2309,6 +2310,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1d1fadb4074ac499b32a000703a9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &-1688391008102056164
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3769091309728837303}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3792125155954613328
 GameObject:
   m_ObjectHideFlags: 0
